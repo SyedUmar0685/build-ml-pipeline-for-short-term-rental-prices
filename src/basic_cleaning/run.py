@@ -35,11 +35,6 @@ def go(args):
     logger.info("Converting last_review to datetime")
     df['last_review'] = pd.to_datetime(df['last_review'])
 
-    # Drop rows outside proper geolocation boundaries
-    logger.info("Dropping rows outside NYC geolocation boundaries")
-    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
-    df = df[idx].copy()
-
     # Save cleaned data
     logger.info("Saving cleaned data to clean_sample.csv")
     df.to_csv("clean_sample.csv", index=False)
